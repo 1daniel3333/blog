@@ -24,5 +24,5 @@ def learning():
     show when user select Online course in sidebar
     """
     st.title("My learning")
-    st.markdown("<h3>Online course</h3>", allow_html=True)
-    st.markdown("<p>Coursera- AI for Everyone</p>", allow_html=True)
+    st.markdown("<h3>Online course</h3>", unsafe_allow_html=True)
+    st.markdown("<p>Coursera- AI for Everyone</p>", unsafe_allow_html=True)
