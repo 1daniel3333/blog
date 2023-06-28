@@ -13,7 +13,7 @@ selector = st.sidebar.radio('my category',['About me','Read books','Online cours
 if selector == 'Read books':
     st.write('You selected Read books')
 elif selector == 'Online course':
-    st.write('You selected Online course')
+    about.learning()
 elif selector == 'About me':
     about.about()
 
