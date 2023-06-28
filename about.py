@@ -13,7 +13,7 @@ def about():
              """)
     st.write("""
              I'm found to be a quick learner and a problem solver. I'm always looking for opportunities to learn and grow.
-             Nowadays technology is changing day by day, AI, chatGPT, data analytics, and more are becoming incr&#x2022easingly popular.
+             Nowadays technology is changing day by day, AI, chatGPT, data analytics, and more are becoming increasingly popular.
              I learn these knowleade from online course, books and from my own research.
              Please check "online course" for more information of my complete courses.
              """)
