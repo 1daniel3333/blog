@@ -2,8 +2,8 @@ import streamlit as st
 import about
 import blogs
 
+## first attempt is in https://1daniel3333.github.io
 ## I'm using streamlit to create my bolg, I want web browser title to set "Dan's record blog" and page title as "Welcome to Dan's space"
-
 st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
 #Good, now I want to enable a side bar to control the content of my blog
 st.sidebar.title('Navigation')
