@@ -1,6 +1,7 @@
 import streamlit as st
 import about
 import blogs
+from save_house.house import get_file
 
 ## first attempt is in https://1daniel3333.github.io
 ## I'm using streamlit to create my bolg, I want web browser title to set "Dan's record blog" and page title as "Welcome to Dan's space"
@@ -12,7 +13,7 @@ st.sidebar.title('Navigation')
 def read_books(key):
     st.write(blogs.book_dict[key])
 
-selector = st.sidebar.radio('my category',['About me','Read books','Online course',])
+selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend'])
 if selector == 'Read books':
     check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
     st.title(check_blog)
@@ -21,5 +22,7 @@ elif selector == 'Online course':
     about.learning()
 elif selector == 'About me':
     about.about()
+elif selector == 'house trend':
+    st.write('New functions TBD.')
 
 
