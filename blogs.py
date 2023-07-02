@@ -489,9 +489,9 @@ git config alias.con ‘config -l’ 在.後的字去替代單引號內
 
 例如
 
-*.txt #設定忽略txt結尾檔案
+*.txt ~設定忽略txt結尾檔案
 
-！note.txt #不要忽略note.txt
+！note.txt ~不要忽略note.txt
 
 @反悔新增的檔案
 
