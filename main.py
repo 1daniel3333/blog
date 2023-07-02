@@ -13,9 +13,35 @@ st.sidebar.title('Navigation')
 def read_books(key):
     st.write(blogs.book_dict[key])
 
+def tag_create():
+    """
+    read blod context and find # to generate a tag dic.
+    """
+    tags_key = {}
+    for key,values in blogs.book_dict.items():
+        tags = values.split('#')
+        if len(tags) > 1:
+            ## remove \n and space
+            tags = [x.replace("\n", "").replace(" ", "") for x in tags[1:]]
+            for tag in tags:
+                if tag in tags_key:
+                    tags_key[tag].append(key)
+                else:
+                    tags_key[tag] = [key]
+    return tags_key
+                
+
 selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend'])
 if selector == 'Read books':
-    check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
+    tags_key=tag_create()
+    check_tags=st.sidebar.selectbox('Tags',['All']+list(tags_key.keys()))
+    if check_tags == 'All':
+        check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
+    else:
+        check_blog=st.sidebar.selectbox('Blogs',list(tags_key[check_tags]))
+    st.sidebar.write('Current tags:')
+    for key,values in tags_key.items():
+        st.sidebar.write(f'{key}: {len(values)} post(s)')
     st.title(check_blog)
     read_books(check_blog)
 elif selector == 'Online course':
