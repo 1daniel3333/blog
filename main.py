@@ -35,14 +35,16 @@ def tag_create():
 selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic'])
 if selector == 'Read books':
     tags_key=tag_create()
-    check_tags=st.sidebar.selectbox('Tags',['All']+list(tags_key.keys()))
+    #add key to display how many post have the same tag
+    post_dict={}
+    for key,values in tags_key.items():
+       post_dict[f'{key}: {len(values)} post(s)']=key
+    check_tags=st.sidebar.selectbox('Tags',['All']+list(post_dict.keys()))
+    #base on selection, use two dic conversion to filter articles
     if check_tags == 'All':
         check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
     else:
-        check_blog=st.sidebar.selectbox('Blogs',list(tags_key[check_tags]))
-    st.sidebar.write('Current tags:')
-    for key,values in tags_key.items():
-        st.sidebar.write(f'{key}: {len(values)} post(s)')
+        check_blog=st.sidebar.selectbox('Blogs',list(tags_key[post_dict[check_tags]]))
     st.title(check_blog)
     read_books(check_blog)
 elif selector == 'Online course':
@@ -53,6 +55,7 @@ elif selector == 'house trend':
     st.write('New functions TBD.')
 elif selector == 'comic':
     st.write('New functions TBD.')
+    # ref link https://www.colamanhua.com/manga-vw74000/
     # df = pd.read_csv('save.csv')
     # st.dataframe(df)
     # st.write('change df to others')
