@@ -55,7 +55,7 @@ elif selector == 'comic':
     df = pd.read_csv('save.csv')
     st.dataframe(df)
     st.write('change df to others')
-    df.append({'name':'new_name','age':18},ignore_index=True)
+    df.append({'name':'new_name','id':18},ignore_index=True)
     st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
 
 
