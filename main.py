@@ -56,6 +56,7 @@ elif selector == 'comic':
     st.dataframe(df)
     st.write('change df to others')
     df.loc[len(df)] = ['new_name', 5]
+    df.to_csv('save.csv',index=False)
     st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
 
 
