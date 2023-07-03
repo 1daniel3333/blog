@@ -31,7 +31,7 @@ def tag_create():
     return tags_key
                 
 
-selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend'])
+selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic'])
 if selector == 'Read books':
     tags_key=tag_create()
     check_tags=st.sidebar.selectbox('Tags',['All']+list(tags_key.keys()))
@@ -50,5 +50,11 @@ elif selector == 'About me':
     about.about()
 elif selector == 'house trend':
     st.write('New functions TBD.')
+elif selector == 'comic':
+    df = pd.read_csv('save.csv')
+    st.dataframe(df)
+    st.write('change df to others')
+    df.append({'name':'new_name','age':18},ignore_index=True)
+    st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
 
 
