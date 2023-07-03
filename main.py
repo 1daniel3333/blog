@@ -52,11 +52,12 @@ elif selector == 'About me':
 elif selector == 'house trend':
     st.write('New functions TBD.')
 elif selector == 'comic':
-    df = pd.read_csv('save.csv')
-    st.dataframe(df)
-    st.write('change df to others')
-    df.loc[len(df)] = ['new_name', 5]
-    df.to_csv('save.csv',index=False)
-    st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
+    st.write('New functions TBD.')
+    # df = pd.read_csv('save.csv')
+    # st.dataframe(df)
+    # st.write('change df to others')
+    # df.loc[len(df)] = ['new_name', 5]
+    # df.to_csv('save.csv',index=False)
+    # st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
 
 
