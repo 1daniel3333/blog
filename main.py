@@ -31,7 +31,9 @@ def tag_create():
                 else:
                     tags_key[tag] = [key]
     return tags_key
-                
+
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8-sig')             
 
 selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic'])
 if selector == 'Read books':
@@ -60,9 +62,9 @@ elif selector == 'comic':
         comic.save_url(st.session_state.comic_dict,"comic.csv")
     
     # Read file
-    comic_df = pd.read_csv("comic.csv")
+    comic_df_raw = pd.read_csv("comic.csv")
     #only show na data means un-check yet
-    comic_df = comic_df[comic_df['check'].isna()].reset_index(drop=True)
+    comic_df = comic_df_raw[comic_df_raw['check'].isna()].reset_index(drop=True)
     
     select_dict = {}
     for i in range(len(comic_df)):
@@ -76,17 +78,18 @@ elif selector == 'comic':
     update_check = st.sidebar.button('Submit')
     
     if update_check==True:
-        comic.prin([select_dict[x] for x in select_lists])
-    
-    # st.write(st.session_state.comic_dict)
+        status = comic.update_check([select_dict[x] for x in select_lists])
+        st.write(status)
+        
+    csv = convert_df(comic_df_raw)
 
-    # st.write('New functions TBD.')
-    # ref link https://www.colamanhua.com/manga-vw74000/
-    # df = pd.read_csv('save.csv')
-    # st.dataframe(df)
-    # st.write('change df to others')
-    # df.loc[len(df)] = ['new_name', 5]
-    # df.to_csv('save.csv',index=False)
-    # st.download_button('Download csv',df.to_csv(),'save.csv','text/csv')
+    st.sidebar.download_button(
+    "Download current status",
+    csv,
+    "comic.csv",
+    "text/csv",
+    key='download-csv'
+    )
+
 
 

@@ -116,7 +116,7 @@ def save_url(comic_dict:{}, save_file_name=''):
         old = list(readed_csv['url'])
 
         #new url to list
-        new = list(week_comic.keys())
+        new = list(comic_dict.keys())
 
         #get new find url as list
         new_find = [x for x in new if x not in old]
@@ -124,11 +124,30 @@ def save_url(comic_dict:{}, save_file_name=''):
         #append new list to dataframe
         for url in new_find:
             today = date.today()
-            readed_csv.loc[len(readed_csv)]=[week_comic[url],f"{url.split('/')[-1].split('.')[0]}",url,'',today]
+            readed_csv.loc[len(readed_csv)]=[comic_dict[url],f"{url.split('/')[-1].split('.')[0]}",url,'',today]
         
     #save to csv
     readed_csv.to_csv(save_file_name, index=False,encoding='utf-8-sig')
     
-def prin(comic=''):
-    for comi in comic:
-        st.write(comi)
+def update_check(url_list=[]):
+    """_summary_
+
+    Args:
+        url_list (list, optional): _description_. Defaults to [].
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        _type_: _description_ return "Save complete"
+    """
+    saving_name = 'comic.csv'
+    comic_df = pd.read_csv(saving_name)
+    for url in url_list:
+        try:
+            location = comic_df[comic_df['url']==url].index[0]
+            comic_df.loc[location,['check']] = 'YES'
+        except:
+            raise ValueError('Cannot find url')
+    comic_df.to_csv(saving_name, index=False)
+    return 'Save complete'
