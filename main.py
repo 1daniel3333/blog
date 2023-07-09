@@ -67,12 +67,15 @@ elif selector == 'comic':
     comic_df = comic_df_raw[comic_df_raw['check'].isna()].reset_index(drop=True)
     
     select_dict = {}
-    for i in range(len(comic_df)):
-        select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
-        body = f"""
-        <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
-        """
-        st.markdown(body, unsafe_allow_html=True)
+    if len(comic_df)>0:
+        for i in range(len(comic_df)):
+            select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
+            body = f"""
+            <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
+            """
+            st.markdown(body, unsafe_allow_html=True)
+    else:
+        st.write('No unread latest comic.')
         
     select_lists= st.sidebar.multiselect('Mark check:', list(select_dict.keys()) )
     update_check = st.sidebar.button('Submit')
