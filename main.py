@@ -2,6 +2,7 @@ import streamlit as st
 import about
 import blogs
 import pandas as pd
+import comic
 # from save_house.house import get_file
 
 ## first attempt is in https://1daniel3333.github.io
@@ -54,7 +55,32 @@ elif selector == 'About me':
 elif selector == 'house trend':
     st.write('New functions TBD.')
 elif selector == 'comic':
-    st.write('New functions TBD.')
+    if 'comic_dict' not in st.session_state:
+        st.session_state.comic_dict = comic.get_week_comic()
+        comic.save_url(st.session_state.comic_dict,"comic.csv")
+    
+    # Read file
+    comic_df = pd.read_csv("comic.csv")
+    #only show na data means un-check yet
+    comic_df = comic_df[comic_df['check'].isna()].reset_index(drop=True)
+    
+    select_dict = {}
+    for i in range(len(comic_df)):
+        select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
+        body = f"""
+        <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
+        """
+        st.markdown(body, unsafe_allow_html=True)
+        
+    select_lists= st.sidebar.multiselect('Mark check:', list(select_dict.keys()) )
+    update_check = st.sidebar.button('Submit')
+    
+    if update_check==True:
+        comic.prin([select_dict[x] for x in select_lists])
+    
+    # st.write(st.session_state.comic_dict)
+
+    # st.write('New functions TBD.')
     # ref link https://www.colamanhua.com/manga-vw74000/
     # df = pd.read_csv('save.csv')
     # st.dataframe(df)
