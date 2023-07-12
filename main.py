@@ -33,66 +33,79 @@ def tag_create():
     return tags_key
 
 def convert_df(df):
-   return df.to_csv(index=False).encode('utf-8-sig')             
+   return df.to_csv(index=False).encode('utf-8-sig')
 
-selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic'])
-if selector == 'Read books':
-    tags_key=tag_create()
-    #add key to display how many post have the same tag
-    post_dict={}
-    for key,values in tags_key.items():
-       post_dict[f'{key}: {len(values)} post(s)']=key
-    check_tags=st.sidebar.selectbox('Tags',['All']+list(post_dict.keys()))
-    #base on selection, use two dic conversion to filter articles
-    if check_tags == 'All':
-        check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
+
+def update_params():
+    st.experimental_set_query_params(option=st.session_state.para)
+ 
+def main():
+    selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic'],key="para", on_change=update_params, )
+    
+    query_params = st.experimental_get_query_params()
+    if 'option' not in query_params:
+        st.experimental_set_query_params(option=st.session_state.para)
     else:
-        check_blog=st.sidebar.selectbox('Blogs',list(tags_key[post_dict[check_tags]]))
-    st.title(check_blog)
-    read_books(check_blog)
-elif selector == 'Online course':
-    about.learning()
-elif selector == 'About me':
-    about.about()
-elif selector == 'house trend':
-    st.write('New functions TBD.')
-elif selector == 'comic':
-    if 'comic_dict' not in st.session_state:
-        st.session_state.comic_dict = comic.get_week_comic()
-        comic.save_url(st.session_state.comic_dict,"comic.csv")
-    
-    # Read file
-    comic_df_raw = pd.read_csv("comic.csv")
-    #only show na data means un-check yet
-    comic_df = comic_df_raw[comic_df_raw['check'].isna()].reset_index(drop=True)
-    
-    select_dict = {}
-    if len(comic_df)>0:
-        for i in range(len(comic_df)):
-            select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
-            body = f"""
-            <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
-            """
-            st.markdown(body, unsafe_allow_html=True)
-    else:
-        st.write('No unread latest comic.')
+        selector=query_params['option'][0]
         
-    select_lists= st.sidebar.multiselect('Mark check:', list(select_dict.keys()) )
-    update_check = st.sidebar.button('Submit')
-    
-    if update_check==True:
-        status = comic.update_check([select_dict[x] for x in select_lists])
-        st.write(status)
+    if selector == 'Read books':
+        tags_key=tag_create()
+        #add key to display how many post have the same tag
+        post_dict={}
+        for key,values in tags_key.items():
+            post_dict[f'{key}: {len(values)} post(s)']=key
+        check_tags=st.sidebar.selectbox('Tags',['All']+list(post_dict.keys()))
+        #base on selection, use two dic conversion to filter articles
+        if check_tags == 'All':
+            check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
+        else:
+            check_blog=st.sidebar.selectbox('Blogs',list(tags_key[post_dict[check_tags]]))
+        st.title(check_blog)
+        read_books(check_blog)
+    elif selector == 'Online course':
+        about.learning()
+    elif selector == 'About me':
+        about.about()
+    elif selector == 'house trend':
+        st.write('New functions TBD.')
+    elif selector == 'comic':
+        if 'comic_dict' not in st.session_state:
+            st.session_state.comic_dict = comic.get_week_comic()
+            comic.save_url(st.session_state.comic_dict,"comic.csv")
         
-    csv = convert_df(comic_df_raw)
+        # Read file
+        comic_df_raw = pd.read_csv("comic.csv")
+        #only show na data means un-check yet
+        comic_df = comic_df_raw[comic_df_raw['check'].isna()].reset_index(drop=True)
+        
+        select_dict = {}
+        if len(comic_df)>0:
+            for i in range(len(comic_df)):
+                select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
+                body = f"""
+                <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
+                """
+                st.markdown(body, unsafe_allow_html=True)
+        else:
+            st.write('No unread latest comic.')
+            
+        select_lists= st.sidebar.multiselect('Mark check:', list(select_dict.keys()) )
+        update_check = st.sidebar.button('Submit')
+        
+        if update_check==True:
+            status = comic.update_check([select_dict[x] for x in select_lists])
+            st.write(status)
+            
+        csv = convert_df(comic_df_raw)
 
-    st.sidebar.download_button(
-    "Download current status",
-    csv,
-    "comic.csv",
-    "text/csv",
-    key='download-csv'
-    )
+        st.sidebar.download_button(
+        "Download current status",
+        csv,
+        "comic.csv",
+        "text/csv",
+        key='download-csv'
+        )
 
-
+if __name__ == '__main__':
+    main()
 
