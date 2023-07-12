@@ -10,3 +10,5 @@ Blog:
 Comic:
   Crawler recent week comic
   Enable check function
+
+07/12/2023: update url pinning for easier page access.
