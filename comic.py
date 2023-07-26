@@ -24,7 +24,7 @@ def get_week_comic(comic_dict={}):
               return str(conic_name.encode('utf-8')).replace('\\x','%').split("'")[1].upper() 
        #search in google for recent 1 week and get url
        # url="https://www.google.com.tw/search?q=%E5%85%A8%E7%9F%A5%E8%AF%BB%E8%80%85%E8%A7%86%E8%A7%92+site%3Ahttps%3A%2F%2Fwww.colamanhua.com%2Fmanga-vw74000%2F&biw=1310&bih=961&tbs=qdr%3Aw&ei=9NmmZKXMHpj7-Qa-nqyoCQ&ved=0ahUKEwilluyZr_r_AhWYfd4KHT4PC5UQ4dUDCA8&oq=%E5%85%A8%E7%9F%A5%E8%AF%BB%E8%80%85%E8%A7%86%E8%A7%92+site%3Ahttps%3A%2F%2Fwww.colamanhua.com%2Fmanga-vw74000%2F&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQDEoECEEYAVDaF1jaF2DxImgCcAB4AIABJ4gBJ5IBATGYAQCgAQKgAQHAAQE&sclient=gws-wiz-serp"
-       url=f"https://www.google.com.tw/search?q={comic_encode(conic_name)}+site%3Ahttps%3A%2F%2Fwww.colamanhua.com%2Fmanga-{comic_dict[conic_name]}%2F&tbs=qdr%3Aw"
+       url=f"https://www.google.com.tw/search?q={comic_encode(conic_name)}+site%3Ahttps%3A%2F%2Fwww.COLAmanhua.com%2Fmanga-{comic_dict[conic_name]}%2F&tbs=qdr%3Aw"
        request_site = Request(url, headers = {'User-Agent': 'Mozilla/5.0',
               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
               'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
@@ -70,6 +70,7 @@ def get_week_comic(comic_dict={}):
             '死灵法师：亡灵支配者':'ky84590',
             '我可以无限顿悟':'rq68930',
             '炼体十万层：我养的狗都是大帝':"ke39760",
+            '99强化木棍':"kh997348",
         }
 
     week_comic = {}
