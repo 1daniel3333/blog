@@ -40,6 +40,7 @@ def learning():
                 &#x2022; <a href="https://www.udemy.com/course/best-unix-linux-training-for-software-qa-testers/">Udemy- Unix, Linux training for beginners</a><br>
                 &#x2022; <a href="https://www.udemy.com/course/project-management-improve-project-manager-skills/">Udemy- Project Management: The Closing Phase</a><br>
                 &#x2022; <a href="https://www.udemy.com/course/r-programming/">Udemy- R Programming A-Z™: R For Data Science With Real exercises</a><br>
+                &#x2022; <a href="https://hiskio.com/courses/1857/about">HiSKIO：打滾也要有技巧，Nick的專業成長實踐課</a><br>
                 </p>""", unsafe_allow_html=True)
     st.markdown("<h3>Books</h3>", unsafe_allow_html=True)
     st.markdown("""<p>
