@@ -26,6 +26,8 @@ def learning():
     st.title("My learning")
     st.markdown("<h3>Online course</h3>", unsafe_allow_html=True)
     st.markdown("""<p>
+                &#x2022; <a href="https://www.coursera.org/learn/project-management-foundations/">Foundations of Project Management</a><br>
+                &#x2022; <a href="https://www.coursera.org/learn/generative-ai-for-everyone/">Generative AI for Everyone</a><br>
                 &#x2022; <a href="https://www.coursera.org/learn/ai-for-everyone">Coursera- AI for Everyone</a><br>
                 &#x2022; <a href="https://www.coursera.org/professional-certificates/google-data-analytics">Coursera- Google Data Analysis</a><br>
                 &#x2022; <a href="https://www.coursera.org/learn/python">Coursera - Programming for Everybody (Getting Started with Python)</a><br>
