@@ -20,7 +20,7 @@ def about():
 
 def gen_list_for_markdoen_hyperlink(input_dict:dict)->list:
     res = []
-    for key, value in input_dict.items:
+    for key, value in input_dict.items():
         res.append(f'&#x2022; <a href="{value}">{key}</a><br>')
     return res
 
