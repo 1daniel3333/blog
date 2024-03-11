@@ -1,6 +1,7 @@
 import streamlit as st
 import about
 import blogs
+import medium
 import pandas as pd
 import comic
 from streamlit.components.v1 import html
@@ -41,7 +42,7 @@ def update_params():
     st.experimental_set_query_params(option=st.session_state.para)
  
 def main():
-    selector = st.sidebar.radio('my category',['About me','Read books','Online course','house trend','comic','subscribe'],key="para", on_change=update_params, )
+    selector = st.sidebar.radio('my category',['About me','Read books','my articles','Online course','house trend','comic','subscribe'],key="para", on_change=update_params, )
     
     query_params = st.experimental_get_query_params()
     if 'option' not in query_params:
@@ -63,6 +64,14 @@ def main():
             check_blog=st.sidebar.selectbox('Blogs',list(tags_key[post_dict[check_tags]]))
         st.title(check_blog)
         read_books(check_blog)
+    elif selector == 'my articles':
+        st.title('Some recent Article:')
+        with st.spinner('Retrieving data'):
+            blog_dic = medium.get_medium_dict()
+        for key,value in blog_dic.items():
+            st.markdown(f'<h3><a href="{value["url"]}">{key}</a></h3>', unsafe_allow_html=True)
+            st.markdown(value["content"])
+        
     elif selector == 'Online course':
         about.learning()
     elif selector == 'About me':
@@ -103,43 +112,6 @@ def main():
         st.markdown('''<p><a href="https://public.tableau.com/views/house_trend/overall_trend?:language=zh-TW&:display_count=n&:origin=viz_share_link">
                     House Trending Tableau form</a></p>''', unsafe_allow_html=True)
         st.info('python plot TBD.')
-    elif selector == 'comic':
-        if 'comic_dict' not in st.session_state:
-            st.session_state.comic_dict = comic.get_week_comic()
-            comic.save_url(st.session_state.comic_dict,"comic.csv")
-        
-        # Read file
-        comic_df_raw = pd.read_csv("comic.csv")
-        #only show na data means un-check yet
-        comic_df = comic_df_raw[comic_df_raw['check'].isna()].reset_index(drop=True)
-        
-        select_dict = {}
-        if len(comic_df)>0:
-            for i in range(len(comic_df)):
-                select_dict[(f"{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}")]=comic_df.iloc[i]['url']
-                body = f"""
-                <p><a href="{comic_df.iloc[i]['url']}">{comic_df.iloc[i]['title']}:{comic_df.iloc[i]['number']}</a></p>
-                """
-                st.markdown(body, unsafe_allow_html=True)
-        else:
-            st.write('No unread latest comic.')
-            
-        select_lists= st.sidebar.multiselect('Mark check:', list(select_dict.keys()) )
-        update_check = st.sidebar.button('Submit')
-        
-        if update_check==True:
-            status = comic.update_check([select_dict[x] for x in select_lists])
-            st.write(status)
-            
-        csv = convert_df(comic_df_raw)
-
-        st.sidebar.download_button(
-        "Download current status",
-        csv,
-        "comic.csv",
-        "text/csv",
-        key='download-csv'
-        )
     elif selector == 'subscribe':
         st.title('大人學列表')
         dict = comic.get_big_man_rss()
