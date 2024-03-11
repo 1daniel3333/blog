@@ -1,12 +1,18 @@
-from selenium import webdriver
 from bs4 import BeautifulSoup
+import urllib.request
 
 def get_a_tag_from_url(url:str="https://medium.com/@p123456dan.mse99"):
-    driver = webdriver.Firefox()  # or webdriver.Chrome()
-    driver.get(url)
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-    a_tags = soup.find_all('a')
-    driver.quit()
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"}
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        response = urllib.request.urlopen(req)
+        html_bytes = response.read()  # Fetch the HTML content as bytes
+        html_str = html_bytes.decode("utf-8")  # Convert bytes to a string
+        soup = BeautifulSoup(html_str, "html.parser")  # Create a Beautiful Soup object
+        a_tags = soup.find_all('a')
+
+    except urllib.error.HTTPError as e:
+        print(f"HTTP Error {e.code}: {e.reason}")
     return a_tags 
 
 def get_raw_target_text(raw_bs4_txt)->list:
