@@ -30,23 +30,17 @@ def convert_df(df):
    return df.to_csv(index=False).encode('utf-8-sig')
 
 def update_params():
-    st.query_params(option=st.session_state.para)
+    st.query_params['option']=st.session_state.para
 
+def is_empty_option()->bool:
+    if 'option' not in st.query_params.keys():
+        return True
+    return False
 
+def set_option_to_default(option_list:list):
+    st.query_params['option'] = option_list[0]
 
-def main():
-    st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
-    st.sidebar.title('Navigation')
-    
-    exist_topic = ['About me','Read books','my articles','Online course','house trend','subscribe']
-    selector = st.sidebar.radio('my category',exist_topic,key="para", on_change=update_params, )
-    
-    query_params = st.query_params()
-    if 'option' not in query_params:
-        st.query_params(option=st.session_state.para)
-    else:
-        selector=query_params['option'][0]
-        
+def decide_action_on_selection(selector:str):
     if selector == 'Read books':
         tags_key=tag_create()
         #add key to display how many post have the same tag
@@ -124,8 +118,22 @@ def main():
             <p><a href="{value}"</a>{key}</p>
             """
             st.markdown(body, unsafe_allow_html=True)
-        
 
+def show_sidebar_get_selection(topic:list)->str:
+    return st.sidebar.radio('my category',topic,key="para", on_change=update_params, )
+
+def main():
+    st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
+    st.sidebar.title('Navigation')
+    
+    exist_topic = ['About me','Read books','my articles','Online course','house trend','subscribe']
+    selector = show_sidebar_get_selection(exist_topic)
+    
+    if is_empty_option():
+        set_option_to_default(exist_topic)
+    
+    decide_action_on_selection(selector)
+    
 if __name__ == '__main__':
     main()
 
