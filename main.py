@@ -5,14 +5,6 @@ import medium
 import suscribe
 import pandas as pd
 from streamlit.components.v1 import html
-# from save_house.house import get_file
-
-## first attempt is in https://1daniel3333.github.io
-## I'm using streamlit to create my bolg, I want web browser title to set "Dan's record blog" and page title as "Welcome to Dan's space"
-st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
-#Good, now I want to enable a side bar to control the content of my blog
-st.sidebar.title('Navigation')
-#Good, now side bar should contain radio selector with some category ['Read books','Online course',]
 
 def read_books(key):
     st.write(blogs.book_dict[key])
@@ -37,16 +29,21 @@ def tag_create():
 def convert_df(df):
    return df.to_csv(index=False).encode('utf-8-sig')
 
-
 def update_params():
-    st.experimental_set_query_params(option=st.session_state.para)
- 
+    st.query_params(option=st.session_state.para)
+
+
+
 def main():
-    selector = st.sidebar.radio('my category',['About me','Read books','my articles','Online course','house trend','subscribe'],key="para", on_change=update_params, )
+    st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
+    st.sidebar.title('Navigation')
     
-    query_params = st.experimental_get_query_params()
+    exist_topic = ['About me','Read books','my articles','Online course','house trend','subscribe']
+    selector = st.sidebar.radio('my category',exist_topic,key="para", on_change=update_params, )
+    
+    query_params = st.query_params()
     if 'option' not in query_params:
-        st.experimental_set_query_params(option=st.session_state.para)
+        st.query_params(option=st.session_state.para)
     else:
         selector=query_params['option'][0]
         
