@@ -2,6 +2,7 @@ import streamlit as st
 import about
 import blogs
 import medium
+import suscribe
 import pandas as pd
 from streamlit.components.v1 import html
 # from save_house.house import get_file
@@ -113,14 +114,14 @@ def main():
         st.info('python plot TBD.')
     elif selector == 'subscribe':
         st.title('大人學列表')
-        dict = comic.get_big_man_rss()
+        dict = suscribe.get_big_man_rss()
         for key, value in dict.items():
             body = f"""
             <p><a href="{value}"</a>{key}</p>
             """
             st.markdown(body, unsafe_allow_html=True)
         st.title('綠角列表')
-        dict = comic.get_green_data()
+        dict = suscribe.get_green_data()
         for key, value in dict.items():
             body = f"""
             <p><a href="{value}"</a>{key}</p>
