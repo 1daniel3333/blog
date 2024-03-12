@@ -3,7 +3,6 @@ import about
 import blogs
 import medium
 import pandas as pd
-import comic
 from streamlit.components.v1 import html
 # from save_house.house import get_file
 
