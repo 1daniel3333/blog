@@ -42,7 +42,7 @@ def update_params():
     st.experimental_set_query_params(option=st.session_state.para)
  
 def main():
-    selector = st.sidebar.radio('my category',['About me','Read books','my articles','Online course','house trend','comic','subscribe'],key="para", on_change=update_params, )
+    selector = st.sidebar.radio('my category',['About me','Read books','my articles','Online course','house trend','subscribe'],key="para", on_change=update_params, )
     
     query_params = st.experimental_get_query_params()
     if 'option' not in query_params:
