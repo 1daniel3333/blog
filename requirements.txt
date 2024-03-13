@@ -4,5 +4,4 @@ selenium
 transformers
 pytorch 
 torchvision 
-torchaudio 
-pytorch-cuda
+torchaudio
