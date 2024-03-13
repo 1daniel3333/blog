@@ -1,8 +1,8 @@
 import streamlit as st
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-model_name = "facebook/bart-large-cnn"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+# from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+# model_name = "facebook/bart-large-cnn"
+# tokenizer = AutoTokenizer.from_pretrained(model_name)
+# model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 def about():
     """
@@ -77,7 +77,7 @@ def learning():
         Summarize the skill Dan had in some sentence, for example: Dan is able to write python and SQL to proceed data analysis.
         '''
     st.info('Below summary is powered by transformers.')
-    st.write(get_response(text_to_llm))
+    # st.write(get_response(text_to_llm))
     
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(course_dict))}</p>""", unsafe_allow_html=True)
     st.markdown("<h3>Books</h3>", unsafe_allow_html=True)

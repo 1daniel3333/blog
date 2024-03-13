@@ -1,7 +1,3 @@
 bs4
 lxml
 selenium
-transformers
-pytorch 
-torchvision 
-torchaudio
