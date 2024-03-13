@@ -1,4 +1,8 @@
 import streamlit as st
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+model_name = "facebook/bart-large-cnn"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 def about():
     """
@@ -66,6 +70,22 @@ def learning():
         'Deep Learning 深度學習基礎':'https://www.books.com.tw/products/0010761759/',
     }
     
+    text_to_llm = f'''
+        Dan complete below courses:
+        {','.join(gen_list_for_markdoen_hyperlink(course_dict))}
+        
+        Summarize the skill Dan had in some sentence, for example: Dan is able to write python and SQL to proceed data analysis.
+        '''
+    st.info('Below summary is powered by transformers.')
+    st.write(get_response(text_to_llm))
+    
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(course_dict))}</p>""", unsafe_allow_html=True)
     st.markdown("<h3>Books</h3>", unsafe_allow_html=True)
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(book_dict))}</p>""", unsafe_allow_html=True)
+
+def get_response(input_text:str)->str:
+    input_ids = tokenizer.encode(input_text, return_tensors="pt", max_length=512, truncation=True)
+
+    summary_ids = model.generate(input_ids, max_length=100, num_beams=4, length_penalty=2.0, early_stopping=True)
+    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    return summary
