@@ -1,30 +1,9 @@
 import streamlit as st
 import about
-import blogs
 import medium
 import suscribe
 import pandas as pd
 from streamlit.components.v1 import html
-
-def read_books(key):
-    st.write(blogs.book_dict[key])
-
-def tag_create():
-    """
-    read blod context and find # to generate a tag dic.
-    """
-    tags_key = {}
-    for key,values in blogs.book_dict.items():
-        tags = values.split('#')
-        if len(tags) > 1:
-            ## remove \n and space
-            tags = [x.replace("\n", "").replace(" ", "") for x in tags[1:]]
-            for tag in tags:
-                if tag in tags_key:
-                    tags_key[tag].append(key)
-                else:
-                    tags_key[tag] = [key]
-    return tags_key
 
 def convert_df(df):
    return df.to_csv(index=False).encode('utf-8-sig')
@@ -39,21 +18,6 @@ def is_empty_option()->bool:
 
 def set_option_to_default(option_list:list):
     st.query_params['option'] = option_list[0]
-
-def get_action_read_book():
-    tags_key=tag_create()
-    #add key to display how many post have the same tag
-    post_dict={}
-    for key,values in tags_key.items():
-        post_dict[f'{key}: {len(values)} post(s)']=key
-    check_tags=st.sidebar.selectbox('Tags',['All']+list(post_dict.keys()))
-    #base on selection, use two dic conversion to filter articles
-    if check_tags == 'All':
-        check_blog=st.sidebar.selectbox('Blogs',blogs.book_dict.keys())
-    else:
-        check_blog=st.sidebar.selectbox('Blogs',list(tags_key[post_dict[check_tags]]))
-    st.title(check_blog)
-    read_books(check_blog)
 
 def get_action_my_atricles():
     st.title('Some recent Article:')
@@ -119,9 +83,7 @@ def get_action_subscribe():
                 st.markdown(body, unsafe_allow_html=True)
         
 def decide_action_on_selection(selector:str):
-    if selector == 'Read books':
-        get_action_read_book()
-    elif selector == 'my articles':
+    if selector == 'my articles':
         get_action_my_atricles()
     elif selector == 'Online course':
         get_action_online_course()
@@ -138,7 +100,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','Read books','my articles','Online course','house trend','subscribe']
+    exist_topic = ['About me','my articles','Online course','house trend','subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)
