@@ -23,7 +23,7 @@ def gen_dict(raw:list)->dict:
                 partial_url = url['href'].split('?')[0]
                 title = url.find('h2').get_text()
                 content = url.find('h3').get_text()
-                blog_dic[title]={'url':f'https://medium.com/{partial_url}', 'content':content}
+                blog_dic[title]={'url':f'https://medium.com{partial_url}', 'content':content}
             except:
                 pass
     return blog_dic
