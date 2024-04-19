@@ -15,26 +15,20 @@ def get_a_tag_from_url(url:str="https://medium.com/@p123456dan.mse99"):
         print(f"HTTP Error {e.code}: {e.reason}")
     return a_tags 
 
-def get_raw_target_text(raw_bs4_txt)->list:
-    saver = []
-    for url in raw_bs4_txt:
-        if url.find('p') and not url.find('span'):
-            saver.append(url)
-    return saver
-
 def gen_dict(raw:list)->dict:
     blog_dic = {}
-    for url in raw[1:]: #start from 1 because 0 is un-need
-        partial_url = url['href'].split('?')[0].split('/')[-1] #extract after name, contains title and hash
-        title = partial_url[:-13]
-        if not title or (title=='en') or '@' in title:
-            #force to stop if title null, had @ or is en
-            break
-        blog_dic[title]={'url':f'https://medium.com/@p123456dan.mse99/{partial_url}', 'content':url.find('p').get_text(strip=True)}
+    for url in raw:
+        if url.find('h2'):
+            try:
+                partial_url = url['href'].split('?')[0]
+                title = url.find('h2').get_text()
+                content = url.find('h3').get_text()
+                blog_dic[title]={'url':f'https://medium.com/{partial_url}', 'content':content}
+            except:
+                pass
     return blog_dic
 
 def get_medium_dict(url:str="https://medium.com/@p123456dan.mse99")->dict:
     a_tag = get_a_tag_from_url(url)
-    a_tag_clean = get_raw_target_text(a_tag)
-    blog_dic = gen_dict(a_tag_clean)
+    blog_dic = gen_dict(a_tag)
     return blog_dic
