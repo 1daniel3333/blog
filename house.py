@@ -67,9 +67,10 @@ def get_linear_regression_result():
     # Assuming you have test data X_test and y_test
     y_pred = model.predict(X_test)
     eval = get_evaluation_data(y_test, y_pred)
+    st.write('Linear Regression on 2023 House data evaluation:')
     for key, value in eval.items():
         st.write(f"{key}: {value:.2f}")
-        
+    
     get_predict_plot(y_test, y_pred)
 
 def get_predict_plot(test, pred):
