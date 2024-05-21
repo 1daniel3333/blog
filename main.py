@@ -73,7 +73,8 @@ def get_action_house_trend():
 def get_action_subscribe():
     content_dict = {
         '大人學列表': suscribe.get_big_man_rss(),
-        '綠角列表': suscribe.get_green_data()
+        '綠角列表': suscribe.get_green_data(),
+        '今日漫畫': suscribe.get_comic(),
         }
     with st.spinner('Retrieving data'):
         for title, data in content_dict.items():

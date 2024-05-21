@@ -1,5 +1,6 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
+import datetime
 
 def big_man_cutter(data='', cutter='')->str:
     """
@@ -49,3 +50,22 @@ def get_web_html_by_bs4(url:str):
     webpage = urlopen(request_site).read()
     soup = BeautifulSoup(webpage)
     return soup
+
+def get_current_day():
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    today = datetime.datetime.now().weekday()
+    return days_of_week[today]
+
+def get_comic()->dict:
+    comic_dict = {
+        "Monday":{'第一序列':'https://www.colamanga.com/manga-pp95549/','全知读者视角':'https://www.colamanga.com/manga-gs015814/'}, 
+        "Tuesday":{'我独自满级新手':'https://www.colamanga.com/manga-pl703354/'}, 
+        "Wednesday":{'全球冰封：我打造了末日安全屋':'https://www.colamanga.com/manga-hy703661/'}, 
+        "Thursday":{}, 
+        "Friday":{'看脸时代':'https://www.colamanga.com/manga-nn727564/'}, 
+        "Saturday":{'这个勇者是金钱至上主义者':'https://www.colamanga.com/manga-rp47086/','觉醒战士':'https://www.colamanga.com/manga-gg528682/'}, 
+        "Sunday":{'炼体十万层：我养的狗都是大帝':'https://www.colamanga.com/manga-qq128585/'},
+    }
+    current = get_current_day()
+    return comic_dict[current]
+    
