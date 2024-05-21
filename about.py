@@ -36,6 +36,10 @@ def learning():
     st.title("My learning")
     st.markdown("<h3>Online course</h3>", unsafe_allow_html=True)
     course_dict = { 
+        'Advanced Learning Algorithms':'https://www.coursera.org/account/accomplishments/verify/BLZG4FN9BPM3?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
+        'Generative AI with Large Language Models':'https://www.coursera.org/account/accomplishments/verify/M7SHRBYFZ3X5',
+        'Supervised Machine Learning: Regression and Classification':'https://www.coursera.org/account/accomplishments/verify/L8E9LMJYYQ3A',
+        '老化全方位應對手冊':'https://hiskio.com/certificates/HI711542133AEvd',
         'Test-Driven Development Overview':'https://www.coursera.org/account/accomplishments/verify/UQQ2U6Z446JK?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
         'Clean Code':'https://www.udemy.com/certificate/UC-2056c4e3-9b17-44a4-ae72-775f2c997af9/',
         'SQL for Data Science':'https://www.coursera.org/account/accomplishments/verify/CUNRGMWTPR4L',
