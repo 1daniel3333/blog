@@ -11,9 +11,10 @@ def about():
     """
     st.title("About me")
     st.write("""
-            Welcome to my space, I'm dedicated professional with a strong background in digital transformation, combining deep domain knowledge in the DRAM industry with coding skills to drive cross-functional success.
-            Skilled in tool automation, data analysis, and project management, with a focus on delivering user-friendly solutions and optimizing operational efficiency.
-            Effective communicator and problem-solver, adept at translating technical concepts into customer-friendly presentations and collaborating with diverse teams.
+            Welcome to my space, I'm a 7+ years in the semiconductor industry, specializing in customer-oriented failure analysis (FA) and data analytics (DA). 
+            Proficient in ETL processes using SQL and Unix. Skilled at resolving escalations through data-driven analysis, 
+            including Anova and machine learning techniques. Passionate about coding, with a top 10% ranking on LeetCode. 
+            Additionally, I’ve earned 32 certifications from Coursera and other platforms.
              """)
     st.write("""
              I'm found to be a quick learner and a problem solver. I'm always looking for opportunities to learn and grow.
