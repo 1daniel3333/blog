@@ -11,10 +11,10 @@ def about():
     """
     st.title("About me")
     st.write("""
-            Welcome to my space, I'm a 7+ years in the semiconductor industry, specializing in customer-oriented failure analysis (FA) and data analytics (DA). 
-            Proficient in ETL processes using SQL and Unix. Skilled at resolving escalations through data-driven analysis, 
-            including Anova and machine learning techniques. Passionate about coding, with a top 10% ranking on LeetCode. 
-            Additionally, I’ve earned 32 certifications from Coursera and other platforms.
+            Welcome to my space, I’m semiconductor failure data analytics (DA) and software engineer proficient in python and SQL with over 8-year experience.
+            My unique value lies in using semiconductor domain and data-driven analysis skill to resolve tasks, whether it’s customer escalations, defects finding, automation pipeline or priority arrangement. 
+            I’m committed to continuous learning and staying ahead of Industry and programming trend.
+            Additionally, I’ve earned 32 certifications from Coursera and other platforms and with a top 10% ranking on LeetCode. 
              """)
     st.write("""
              I'm found to be a quick learner and a problem solver. I'm always looking for opportunities to learn and grow.
