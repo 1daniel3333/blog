@@ -11,14 +11,11 @@ def about():
     """
     st.title("About me")
     st.write("""
-            Welcome to my space, I’m semiconductor failure data analytics (DA) and software engineer proficient in python and SQL with over 8-year experience.
-            My unique value lies in using semiconductor domain and data-driven analysis skill to resolve tasks, whether it’s customer escalations, defects finding, automation pipeline or priority arrangement. 
-            I’m committed to continuous learning and staying ahead of Industry and programming trend.
-            Additionally, I’ve earned 32 certifications from Coursera and other platforms and with a top 10% ranking on LeetCode. 
+            Welcome to my space, I’m semiconductor failure data analytics (DA) and full stack engineer proficient in python and SQL with over 8-year experience. Our tool had on average 80 click per day and saving the equivalent of 16 headcounts annually.
+            My unique value lies in using semiconductor domain and data-driven analysis skill to resolve tasks, whether it’s customer escalations, defects finding, automation pipeline or priority arrangement. I have collaborated with software and data engineers to create robust pipelines and communicated effectively with stakeholders to identify and deliver business value.
+            I’m committed to continuous learning and staying ahead of Industry and programming trend. With my material science background, I know about semiconductor languages. And I learn coding source during night to increase my coding skills. 2024 is Full of LLM and Machine Learning, I also learn many courses online and applied to work. Passionate about coding, with a top 10% ranking on LeetCode. Additionally, I’ve earned 32 certifications from Coursera and other platforms.
              """)
     st.write("""
-             I'm found to be a quick learner and a problem solver. I'm always looking for opportunities to learn and grow.
-             Nowadays technology is changing day by day, AI, chatGPT, data analytics, and more are becoming increasingly popular.
              I learn these knowleade from online course, books and from my own research.
              Please check "online course" for more information of my complete courses.
              """)
