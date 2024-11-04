@@ -64,12 +64,14 @@ def learning():
     }
     
     book_dict = {
+        '封裝的前世今生':'https://medium.com/@p123456dan.mse99/%E5%B0%81%E8%A3%9D%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F-%E5%82%B3%E7%B5%B1%E5%B0%81%E8%A3%9D%E5%88%B0%E5%85%88%E9%80%B2%E5%B0%81%E8%A3%9D-2-5d-3d-fopop%E6%98%AF%E7%94%9A%E9%BA%BC-2e1389be6bca',
         'Python錦囊妙計':'https://24h.pchome.com.tw/books/prod/DJAA2V-A90053G9M',
         'Python Data Science Handbook':'https://jakevdp.github.io/PythonDataScienceHandbook/',
         'Data Visualization with Python and JavaScript':'https://www.oreilly.com/library/view/data-visualization-with/9781098111861/',
         '完整學會Git, GitHub, Git Server的24堂課':'https://www.books.com.tw/products/0010775914',
         'Learning SQL':'https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/',
         'Deep Learning 深度學習基礎':'https://www.books.com.tw/products/0010761759/',
+        '邊緣AI — 使用嵌入式機器學習解決真實世界的問題':'https://medium.com/@p123456dan.mse99/%E9%82%8A%E7%B7%A3ai-%E4%BD%BF%E7%94%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E8%A7%A3%E6%B1%BA%E7%9C%9F%E5%AF%A6%E4%B8%96%E7%95%8C%E7%9A%84%E5%95%8F%E9%A1%8C-639f956e6f15',
     }
     
     text_to_llm = f'''

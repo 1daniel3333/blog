@@ -4,6 +4,7 @@ import medium
 import suscribe
 import pandas as pd
 import house
+import topic
 
 def convert_df(df):
    return df.to_csv(index=False).encode('utf-8-sig')
@@ -35,6 +36,9 @@ def get_action_about_me():
 
 def get_action_house_trend():
     house.house_main()
+    
+def get_action_weather():
+    topic.weather_main()
 
 def get_action_subscribe():
     content_dict = {
@@ -60,6 +64,8 @@ def decide_action_on_selection(selector:str):
         get_action_house_trend()
     elif selector == 'subscribe':
         get_action_subscribe()
+    elif selector == 'weather':
+        get_action_weather()
 
 def show_sidebar_get_selection(topic:list)->str:
     return st.sidebar.radio('my category',topic,key="para", on_change=update_params, )
@@ -67,7 +73,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','my articles','Online course','house trend','subscribe']
+    exist_topic = ['About me','my articles','Online course','house trend','weather','subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)
