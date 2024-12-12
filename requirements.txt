@@ -3,3 +3,4 @@ lxml
 selenium
 scikit-learn
 matplotlib
+openpyxl

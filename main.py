@@ -66,6 +66,8 @@ def decide_action_on_selection(selector:str):
         get_action_subscribe()
     elif selector == 'weather':
         get_action_weather()
+    elif selector == 'mountain climb':
+        topic.get_action_mountain_climb()
 
 def show_sidebar_get_selection(topic:list)->str:
     return st.sidebar.radio('my category',topic,key="para", on_change=update_params, )
@@ -73,7 +75,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','my articles','Online course','house trend','weather','subscribe']
+    exist_topic = ['About me','my articles','Online course','house trend','weather','mountain climb','subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)
