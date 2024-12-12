@@ -19,8 +19,12 @@ def get_action_mountain_climb():
             default=False
         )
     }
+    # add a column for checkbox
+    skill_df['Selected'] = False
     
-    st.dataframe(experience_df, use_container_width=True)
+    # Apply text wrapping using Pandas Styler
+    df_styled = experience_df.style.set_properties(**{'white-space': 'pre-wrap'})
+    st.dataframe(df_styled, use_container_width=True)
 
     # Define the options
     options = list(judgement_df['體能狀況'].unique())
