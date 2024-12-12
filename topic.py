@@ -11,6 +11,15 @@ def get_action_mountain_climb():
     skill_df = pd.read_excel('climbing_levels.xlsx', sheet_name='skill')
     experience_df = pd.read_excel('climbing_levels.xlsx', sheet_name='experience')
     
+    # Configure the checkbox column
+    column_config = {
+        'Selected': st.column_config.CheckboxColumn(
+            label="Select",
+            help="Select your preferred rows",
+            default=False
+        )
+    }
+    
     st.dataframe(experience_df, use_container_width=True)
 
     # Define the options
@@ -25,7 +34,7 @@ def get_action_mountain_climb():
     level = current_condition['Level'].unique()[0]
 
     st.write('應具備技能:')
-    st.dataframe(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='技能')], use_container_width=True)
+    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='技能')], column_config=column_config, hide_index=True)
 
     st.write('視狀況攜帶物品:')
-    st.dataframe(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='裝備')], use_container_width=True)
+    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='裝備')], column_config=column_config, hide_index=True)
