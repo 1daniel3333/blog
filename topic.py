@@ -37,8 +37,10 @@ def get_action_mountain_climb():
 
     level = current_condition['Level'].unique()[0]
 
+    columns_to_show = ['Selected','項目','內容']
+
     st.write('應具備技能:')
-    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='技能')], column_config=column_config, hide_index=True)
+    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='技能')][columns_to_show], column_config=column_config, hide_index=True)
 
     st.write('視狀況攜帶物品:')
-    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='裝備')], column_config=column_config, hide_index=True)
+    st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='裝備')][columns_to_show], column_config=column_config, hide_index=True)
