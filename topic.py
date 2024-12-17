@@ -22,6 +22,7 @@ def get_list_to_check():
         get_action_mountain_climb()
     elif selection=='騎車':
         motor_check_list = {
+            "Selected":False,
             "項目": ["胎壓", "油量", "煞車", "燈光", "鏈條", "鏡子", "儀表板", "車身"],
             "檢查內容": [
                 "確保前後輪胎壓在建議範圍內，這有助於保持良好的操控性和減少磨損。",
@@ -42,12 +43,12 @@ def get_list_to_check():
         st.data_editor(df, column_config=column_config, hide_index=True)
     elif selection=='出遊物品':
         outdoor_check_list = {
+            "Selected":False,
             "項目": ["太陽眼鏡", "衛生紙", "防曬", "充電器", "牙刷", "水壺",],
         }
 
         # Create DataFrame
         df = pd.DataFrame(outdoor_check_list)
-        df['Selected'] = False
         st.write('檢查清單:')
         st.data_editor(df, column_config=column_config, hide_index=True)
 
