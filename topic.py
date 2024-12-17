@@ -37,6 +37,7 @@ def get_list_to_check():
 
         # Create DataFrame
         df = pd.DataFrame(motor_check_list)
+        df['Selected'] = False
         st.write('檢查清單:')
         st.data_editor(df, column_config=column_config, hide_index=True)
     elif selection=='出遊物品':
@@ -46,6 +47,7 @@ def get_list_to_check():
 
         # Create DataFrame
         df = pd.DataFrame(outdoor_check_list)
+        df['Selected'] = False
         st.write('檢查清單:')
         st.data_editor(df, column_config=column_config, hide_index=True)
 
