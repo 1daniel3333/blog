@@ -73,7 +73,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','My articles','Online course','house trend','Weather','Checking List','Subscribe']
+    exist_topic = ['About me','My articles','Online course','house trend','Checking List','Subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)
