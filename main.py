@@ -54,7 +54,7 @@ def get_action_subscribe():
                 st.markdown(body, unsafe_allow_html=True)
         
 def decide_action_on_selection(selector:str):
-    if selector == 'my articles':
+    if selector == 'My articles':
         get_action_my_atricles()
     elif selector == 'Online course':
         get_action_online_course()
@@ -62,12 +62,12 @@ def decide_action_on_selection(selector:str):
         get_action_about_me()
     elif selector == 'house trend':
         get_action_house_trend()
-    elif selector == 'subscribe':
+    elif selector == 'Subscribe':
         get_action_subscribe()
-    elif selector == 'weather':
+    elif selector == 'Weather':
         get_action_weather()
-    elif selector == 'mountain climb':
-        topic.get_action_mountain_climb()
+    elif selector == 'Checking List':
+        topic.get_list_to_check()
 
 def show_sidebar_get_selection(topic:list)->str:
     return st.sidebar.radio('my category',topic,key="para", on_change=update_params, )
@@ -75,7 +75,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','my articles','Online course','house trend','weather','mountain climb','subscribe']
+    exist_topic = ['About me','My articles','Online course','house trend','Weather','Checking List','Subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)

@@ -4,21 +4,57 @@ import pandas as pd
 def weather_main():
     body = '''<iframe src="https://www.cwa.gov.tw/V8/C/W/OBS_Radar.html" width="800" height="600" frameborder="0" allowfullscreen></iframe>'''
     st.markdown(body, unsafe_allow_html=True)
-    
+
+column_config = {
+    'Selected': st.column_config.CheckboxColumn(
+        label="Select",
+        help="Select your preferred rows",
+        default=False
+    )
+}
+
+def get_list_to_check():
+    list_sum = ['爬山','騎車','出遊物品']
+
+    # Create a selectbox for single selection
+    selection = st.selectbox("情況:", list_sum)
+    if selection=='爬山':
+        get_action_mountain_climb()
+    elif selection=='騎車':
+        motor_check_list = {
+            "項目": ["胎壓", "油量", "煞車", "燈光", "鏈條", "鏡子", "儀表板", "車身"],
+            "檢查內容": [
+                "確保前後輪胎壓在建議範圍內，這有助於保持良好的操控性和減少磨損。",
+                "檢查油箱中的油量是否足夠，避免在途中沒油。",
+                "檢查前後煞車是否正常運作，煞車片是否磨損過度。",
+                "檢查前後燈、方向燈和煞車燈是否正常工作，確保在夜間或低能見度條件下的安全。",
+                "檢查鏈條的張力是否適中，並確保鏈條潤滑良好。",
+                "確保後視鏡位置正確，並且沒有破損或鬆動。",
+                "檢查儀表板上的指示燈是否正常，特別是油量、引擎和電池指示燈。",
+                "檢查車身是否有明顯的損壞或鬆動的部件。"
+            ]
+        }
+
+        # Create DataFrame
+        df = pd.DataFrame(motor_check_list)
+        st.write('檢查清單:')
+        st.data_editor(df, column_config=column_config, hide_index=True)
+    elif selection=='出遊物品':
+        outdoor_check_list = {
+            "項目": ["太陽眼鏡", "衛生紙", "防曬", "充電器", "牙刷", "水壺",],
+        }
+
+        # Create DataFrame
+        df = pd.DataFrame(outdoor_check_list)
+        st.write('檢查清單:')
+        st.data_editor(df, column_config=column_config, hide_index=True)
+
 def get_action_mountain_climb():
     #get file
     judgement_df = pd.read_excel('climbing_levels.xlsx', sheet_name='judgement')
     skill_df = pd.read_excel('climbing_levels.xlsx', sheet_name='skill')
     experience_df = pd.read_excel('climbing_levels.xlsx', sheet_name='experience')
     
-    # Configure the checkbox column
-    column_config = {
-        'Selected': st.column_config.CheckboxColumn(
-            label="Select",
-            help="Select your preferred rows",
-            default=False
-        )
-    }
     # add a column for checkbox
     skill_df['Selected'] = False
     
