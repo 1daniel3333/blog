@@ -64,8 +64,6 @@ def decide_action_on_selection(selector:str):
         get_action_house_trend()
     elif selector == 'Subscribe':
         get_action_subscribe()
-    elif selector == 'Weather':
-        get_action_weather()
     elif selector == 'Checking List':
         topic.get_list_to_check()
 
