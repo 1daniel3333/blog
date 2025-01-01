@@ -46,7 +46,7 @@ def get_action_mountain_climb():
     st.data_editor(skill_df[(skill_df['Required_level']<=level) & (skill_df['項目']=='裝備')][columns_to_show], column_config=column_config, hide_index=True)
     
 def get_list_to_check():
-    list_sum = ['爬山','騎車','出遊物品','天氣']
+    list_sum = ['爬山','騎車','出遊物品','出國清單','天氣']
 
     # Create a selectbox for single selection
     selection = st.selectbox("情況:", list_sum)
@@ -81,6 +81,16 @@ def get_list_to_check():
 
         # Create DataFrame
         df = pd.DataFrame(outdoor_check_list)
+        st.write('檢查清單:')
+        st.data_editor(df, column_config=column_config, hide_index=True)
+    elif selection=='出國清單':
+        travel_check_list = {
+            "Selected": False,
+            "項目": ["護照", "簽證", "機票", "住宿確認", "信用卡", "現金", "手機", "充電器", "衣物", "雨具", "藥品", "盥洗用品", "旅行保險", "轉接插頭", "行李鎖", "行程表", "景點門票",],
+        }
+
+        # Create DataFrame
+        df = pd.DataFrame(travel_check_list)
         st.write('檢查清單:')
         st.data_editor(df, column_config=column_config, hide_index=True)
     elif selection=='天氣':
