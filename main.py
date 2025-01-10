@@ -33,6 +33,8 @@ def get_action_online_course():
 
 def get_action_about_me():
     about.about()
+    import llama32_st as llm
+    llm.llama_talk()
 
 def get_action_house_trend():
     house.house_main()
