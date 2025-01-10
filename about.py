@@ -32,6 +32,11 @@ def learning():
     show when user select Online course in sidebar
     """
     st.title("My learning")
+    my_learning_html = '''
+    <h3>My Article About Machine Learning, AI and Python in <a href="https://medium.com/@p123456dan.mse99/list/900a1f14bea0" target="_blank">link</a></h3>
+    '''
+    st.markdown(my_learning_html, unsafe_allow_html=True)
+    
     st.markdown("<h3>Online course</h3>", unsafe_allow_html=True)
     course_dict = { 
         'Advanced Learning Algorithms':'https://www.coursera.org/account/accomplishments/verify/BLZG4FN9BPM3?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
@@ -74,14 +79,6 @@ def learning():
         '邊緣AI — 使用嵌入式機器學習解決真實世界的問題':'https://medium.com/@p123456dan.mse99/%E9%82%8A%E7%B7%A3ai-%E4%BD%BF%E7%94%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E8%A7%A3%E6%B1%BA%E7%9C%9F%E5%AF%A6%E4%B8%96%E7%95%8C%E7%9A%84%E5%95%8F%E9%A1%8C-639f956e6f15',
     }
     
-    text_to_llm = f'''
-        Dan complete below courses:
-        {','.join(gen_list_for_markdoen_hyperlink(course_dict))}
-        
-        Summarize the skill Dan had in some sentence, for example: Dan is able to write python and SQL to proceed data analysis.
-        '''
-    st.info('Below summary is powered by transformers.')
-    # st.write(get_response(text_to_llm))
     
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(course_dict))}</p>""", unsafe_allow_html=True)
     st.markdown("<h3>Books</h3>", unsafe_allow_html=True)
