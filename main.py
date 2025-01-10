@@ -3,7 +3,7 @@ import about
 import medium
 import suscribe
 import pandas as pd
-import house
+# import house
 import topic
 
 def convert_df(df):
@@ -34,8 +34,10 @@ def get_action_online_course():
 def get_action_about_me():
     about.about()
 
-def get_action_house_trend():
-    house.house_main()
+def get_ai_action():
+    body = '''<iframe src="https://medium.com/@p123456dan.mse99/list/900a1f14bea0" width="800" height="600" frameborder="0" allowfullscreen></iframe>'''
+    st.markdown(body, unsafe_allow_html=True)
+    # house.house_main()
     
 def get_action_weather():
     topic.weather_main()
@@ -60,8 +62,8 @@ def decide_action_on_selection(selector:str):
         get_action_online_course()
     elif selector == 'About me':
         get_action_about_me()
-    elif selector == 'house trend':
-        get_action_house_trend()
+    elif selector == 'Machine Learning/AI':
+        get_ai_action()
     elif selector == 'Subscribe':
         get_action_subscribe()
     elif selector == 'Checking List':
