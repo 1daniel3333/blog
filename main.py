@@ -33,11 +33,6 @@ def get_action_online_course():
 
 def get_action_about_me():
     about.about()
-
-def get_ai_action():
-    body = '''<iframe src="https://medium.com/@p123456dan.mse99/list/900a1f14bea0" width="800" height="600" frameborder="0" allowfullscreen></iframe>'''
-    st.markdown(body, unsafe_allow_html=True)
-    # house.house_main()
     
 def get_action_weather():
     topic.weather_main()
@@ -62,8 +57,6 @@ def decide_action_on_selection(selector:str):
         get_action_online_course()
     elif selector == 'About me':
         get_action_about_me()
-    elif selector == 'Machine Learning/AI':
-        get_ai_action()
     elif selector == 'Subscribe':
         get_action_subscribe()
     elif selector == 'Checking List':
@@ -75,7 +68,7 @@ def show_sidebar_get_selection(topic:list)->str:
 def main():
     st.set_page_config(page_title="Dan's record blog", page_icon=":smile:", layout="wide")
     st.sidebar.title('Navigation')
-    exist_topic = ['About me','My articles','Online course','Machine Learning/AI','Checking List','Subscribe']
+    exist_topic = ['About me','My articles','Online course','Checking List','Subscribe']
     selector = show_sidebar_get_selection(exist_topic)
     if is_empty_option():
         set_option_to_default(exist_topic)
