@@ -69,6 +69,7 @@ def learning():
     }
     
     book_dict = {
+        '精通資料分析｜使用Excel、Python和R':'https://medium.com/@p123456dan.mse99/%E7%B2%BE%E9%80%9A%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90-%E4%BD%BF%E7%94%A8excel-python%E5%92%8Cr-%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%861-5%E7%AB%A0-0410b2f75ad6',
         '先整理一下？｜個人層面的軟體設計考量':'https://medium.com/@p123456dan.mse99/%E5%85%88%E6%95%B4%E7%90%86%E4%B8%80%E4%B8%8B-%E5%80%8B%E4%BA%BA%E5%B1%A4%E9%9D%A2%E7%9A%84%E8%BB%9F%E9%AB%94%E8%A8%AD%E8%A8%88%E8%80%83%E9%87%8F%E8%AE%80%E5%BE%8C%E5%BF%83%E5%BE%97-f8841f5841d3',
         '封裝的前世今生':'https://medium.com/@p123456dan.mse99/%E5%B0%81%E8%A3%9D%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F-%E5%82%B3%E7%B5%B1%E5%B0%81%E8%A3%9D%E5%88%B0%E5%85%88%E9%80%B2%E5%B0%81%E8%A3%9D-2-5d-3d-fopop%E6%98%AF%E7%94%9A%E9%BA%BC-2e1389be6bca',
         'Python錦囊妙計':'https://24h.pchome.com.tw/books/prod/DJAA2V-A90053G9M',
