@@ -11,13 +11,11 @@ def about():
     """
     st.title("About me")
     st.write("""
-            Welcome to my space, I’m semiconductor failure data analytics (DA) and full stack engineer proficient in python and SQL with over 8-year experience. Our tool had on average 80 click per day and saving the equivalent of 16 headcounts annually.
-            My unique value lies in using semiconductor domain and data-driven analysis skill to resolve tasks, whether it’s customer escalations, defects finding, automation pipeline or priority arrangement. I have collaborated with software and data engineers to create robust pipelines and communicated effectively with stakeholders to identify and deliver business value.
-            I’m committed to continuous learning and staying ahead of Industry and programming trend. With my material science background, I know about semiconductor languages. And I learn coding source during night to increase my coding skills. 2024 is Full of LLM and Machine Learning, I also learn many courses online and applied to work. Passionate about coding, with a top 10% ranking on LeetCode. Additionally, I’ve earned 32 certifications from Coursera and other platforms.
-             """)
-    st.write("""
-             I learn these knowleade from online course, books and from my own research.
-             Please check "online course" for more information of my complete courses.
+            Welcome to my space, I am a semiconductor failure AI and full-stack engineer with over 8 years of experience in developing and integrating cross-organizational projects using Python and SQL. 
+            As the project leader of Intelligent Abnormal Detector Tool, I have successfully aligned multi-domain teams from different domains to complete this tool from POC(proof od concept), UAT to BKM, providing AI solutions to company.
+            In my role, I have defined the scope of Intelligent Manufacturing and introduced impactful tools assisting our production line and quality engineer and increase human-efficiency. These tools add value by addressing tasks such as escalations, defect detection, and automation pipeline creation.
+            With a background in Semiconductor industry, I am well-versed in semiconductor terminology. I have dedicated my nights to enhancing my coding skills, transitioning to the script development team. My passion for coding is reflected in my top ranking on LeetCode. 
+            Additionally, I have earned 32 certifications from Coursera and other platforms, demonstrating my commitment to continuous learning.
              """)
 
 def gen_list_for_markdoen_hyperlink(input_dict:dict)->list:
