@@ -37,6 +37,10 @@ def learning():
     
     st.markdown("<h3>Online course</h3>", unsafe_allow_html=True)
     course_dict = { 
+        'Introduction to Containers w/ Docker, Kubernetes & OpenShift':'https://www.coursera.org/account/accomplishments/verify/F5A2GMWJDS9B',
+        'Mountains 101':'https://www.coursera.org/account/accomplishments/verify/GLCKGS6911E1',
+        'Unsupervised Learning, Recommenders, Reinforcement Learning':'https://www.coursera.org/account/accomplishments/verify/BBLAZEUJQSJR',
+        'Machine Learning in Production':'https://www.coursera.org/account/accomplishments/verify/PXSFC8TBBZK5',
         'Advanced Learning Algorithms':'https://www.coursera.org/account/accomplishments/verify/BLZG4FN9BPM3?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
         'Generative AI with Large Language Models':'https://www.coursera.org/account/accomplishments/verify/M7SHRBYFZ3X5',
         'Supervised Machine Learning: Regression and Classification':'https://www.coursera.org/account/accomplishments/verify/L8E9LMJYYQ3A',
