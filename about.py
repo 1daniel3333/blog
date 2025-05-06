@@ -43,8 +43,7 @@ def about():
     st.subheader("Chat with Dan-Agent")
 
     # Initialize Embedding Manager
-    # save_directory = os.path.join(os.path.abspath(os.sep))  # Root directory
-    save_directory = 'C://Users//Dell//Documents//blog'  # Change this to your desired path
+    save_directory = os.getcwd()
     st.session_state.embedding_manager = rag_app.EmbeddingManager(save_directory)
     st.session_state.embedding_manager.gemini_model_init()
 
