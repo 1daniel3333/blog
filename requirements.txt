@@ -4,4 +4,7 @@ selenium
 scikit-learn
 matplotlib
 openpyxl
-langchain_ollama
+numpy
+PyMuPDF
+sentence-transformers
+google-generativeai
