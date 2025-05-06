@@ -60,11 +60,11 @@ def get_comic()->dict:
     comic_dict = {
         "Monday":{'第一序列':'https://www.colamanga.com/manga-pp95549/','全知读者视角':'https://www.colamanga.com/manga-cw639193/'}, 
         "Tuesday":{'我独自满级新手':'https://www.colamanga.com/manga-qc474017/'}, 
-        "Wednesday":{'全球冰封：我打造了末日安全屋':'https://www.colamanga.com/manga-hy703661/'}, 
+        "Wednesday":{}, 
         "Thursday":{'66666年后复活的黑魔法师':'https://www.colamanga.com/manga-ai600178/'}, 
-        "Friday":{'看脸时代':'https://www.colamanga.com/manga-hn661197/'}, 
+        "Friday":{}, 
         "Saturday":{'这个勇者是金钱至上主义者':'https://www.colamanga.com/manga-rp47086/','死灵法师！我即是天灾':'https://www.colamanga.com/manga-eg195836/'}, 
-        "Sunday":{'炼体十万层：我养的狗都是大帝':'https://www.colamanga.com/manga-qq128585/','99强化木棍':'https://www.colamanga.com/manga-kh997348/','任务至上主义':'https://www.colamanga.com/manga-vc722396/',},
+        "Sunday":{'99强化木棍':'https://www.colamanga.com/manga-kh997348/',},
     }
     current = get_current_day()
     return comic_dict[current]

@@ -1,22 +1,55 @@
 import streamlit as st
-# from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-# model_name = "facebook/bart-large-cnn"
-# tokenizer = AutoTokenizer.from_pretrained(model_name)
-# model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+import os
+import rag_application as rag_app
+
+# Function to handle the conversation flow
+def chat():
+    # Initialize conversation_history if not already present
+    if 'conversation_history' not in st.session_state:
+        st.session_state.conversation_history = []
+
+    # Create a text input for the user to ask questions
+    user_input = st.text_input("Ask me anything", value='', key='reset_input')
+
+    if user_input:
+        # Append the user's input to the conversation history
+        st.session_state.conversation_history.append({'user': user_input})
+        
+        # Get the response from the model using embedding manager
+        response = st.session_state.embedding_manager.flow_for_answering(user_input)
+        st.session_state.conversation_history.append({'model': response[0]['model']})
+
+        # Display conversation history
+        for turn in st.session_state.conversation_history:
+            if 'user' in turn:
+                st.write(f"Ask: {turn['user']}")
+            if 'model' in turn:
+                st.write(f"Dan-Agent: {turn['model']}")
 
 def about():
     """
-    connect to main
-    show when user select about in sidebar
+    Connect to main and show when user selects 'About' in sidebar.
+    Includes chat functionality.
     """
     st.title("About me")
     st.write("""
-            Welcome to my space, I am a semiconductor failure AI and full-stack engineer with over 8 years of experience in developing and integrating cross-organizational projects using Python and SQL. 
-            As the project leader of Intelligent Abnormal Detector Tool, I have successfully aligned multi-domain teams from different domains to complete this tool from POC(proof od concept), UAT to BKM, providing AI solutions to company.
-            In my role, I have defined the scope of Intelligent Manufacturing and introduced impactful tools assisting our production line and quality engineer and increase human-efficiency. These tools add value by addressing tasks such as escalations, defect detection, and automation pipeline creation.
-            With a background in Semiconductor industry, I am well-versed in semiconductor terminology. I have dedicated my nights to enhancing my coding skills, transitioning to the script development team. My passion for coding is reflected in my top ranking on LeetCode. 
-            Additionally, I have earned 32 certifications from Coursera and other platforms, demonstrating my commitment to continuous learning.
-             """)
+        Welcome to my space, I am a semiconductor failure AI and full-stack engineer with over 8 years of experience in developing and integrating cross-organizational projects using Python and SQL. 
+        As the project leader of the Intelligent Abnormal Detector Tool, I have successfully aligned multi-domain teams from different domains to complete this tool from POC (proof of concept), UAT to BKM, providing AI solutions to the company.
+        In my role, I have defined the scope of Intelligent Manufacturing and introduced impactful tools assisting our production line and quality engineers, increasing human efficiency. These tools add value by addressing tasks such as escalations, defect detection, and automation pipeline creation.
+        With a background in the semiconductor industry, I am well-versed in semiconductor terminology. I have dedicated my nights to enhancing my coding skills, transitioning to the script development team. My passion for coding is reflected in my top ranking on LeetCode. 
+        Additionally, I have earned 32 certifications from Coursera and other platforms, demonstrating my commitment to continuous learning.
+    """)
+
+    st.subheader("Chat with Dan-Agent")
+
+    # Initialize Embedding Manager
+    # save_directory = os.path.join(os.path.abspath(os.sep))  # Root directory
+    save_directory = 'C://Users//Dell//Documents//blog'  # Change this to your desired path
+    st.session_state.embedding_manager = rag_app.EmbeddingManager(save_directory)
+    st.session_state.embedding_manager.gemini_model_init()
+
+    # Call the chat function
+    chat()
 
 def gen_list_for_markdoen_hyperlink(input_dict:dict)->list:
     res = []
@@ -83,14 +116,6 @@ def learning():
         '邊緣AI — 使用嵌入式機器學習解決真實世界的問題':'https://medium.com/@p123456dan.mse99/%E9%82%8A%E7%B7%A3ai-%E4%BD%BF%E7%94%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E8%A7%A3%E6%B1%BA%E7%9C%9F%E5%AF%A6%E4%B8%96%E7%95%8C%E7%9A%84%E5%95%8F%E9%A1%8C-639f956e6f15',
     }
     
-    
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(course_dict))}</p>""", unsafe_allow_html=True)
     st.markdown("<h3>Books</h3>", unsafe_allow_html=True)
     st.markdown(f"""<p>{' '.join(gen_list_for_markdoen_hyperlink(book_dict))}</p>""", unsafe_allow_html=True)
-
-def get_response(input_text:str)->str:
-    input_ids = tokenizer.encode(input_text, return_tensors="pt", max_length=512, truncation=True)
-
-    summary_ids = model.generate(input_ids, max_length=100, num_beams=4, length_penalty=2.0, early_stopping=True)
-    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-    return summary
