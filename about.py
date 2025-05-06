@@ -43,8 +43,9 @@ def about():
     st.subheader("Chat with Dan-Agent")
 
     # Initialize Embedding Manager
-    save_directory = os.getcwd()
-    st.session_state.embedding_manager = rag_app.EmbeddingManager(save_directory)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    # save_directory = os.getcwd()
+    st.session_state.embedding_manager = rag_app.EmbeddingManager(base_dir)
     st.session_state.embedding_manager.gemini_model_init()
 
     # Call the chat function
